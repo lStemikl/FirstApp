@@ -8,8 +8,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firstapp.R
+import com.example.firstapp.db.quotes
 
-class StateRecycler(val context: Context, val list: ArrayList<State>):RecyclerView.Adapter<StateRecycler.MyVH>() {
+class StateRecycler(val context: Context, val quotes: quotes):RecyclerView.Adapter<StateRecycler.MyVH>() {
     class MyVH(ListOfView: View): RecyclerView.ViewHolder(ListOfView){
         val image: ImageView = itemView.findViewById(R.id.state_img)
         val title: TextView = itemView.findViewById(R.id.state_title)
@@ -22,12 +23,12 @@ class StateRecycler(val context: Context, val list: ArrayList<State>):RecyclerVi
     }
 
     override fun onBindViewHolder(holder: StateRecycler.MyVH, position: Int) {
-        holder.image.setImageResource(list[position].image)
-        holder.title.setText(list[position].title)
-        holder.state_text.setText(list[position].text_state)
+        holder.image.setImageResource(quotes.data[position].image)
+        holder.title.setText(quotes.data[position].title)
+        holder.state_text.setText(quotes.data[position].text_state)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return quotes.data.size
     }
 }
